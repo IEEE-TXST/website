@@ -16,7 +16,7 @@ export const siteConfig = {
     email: "IEEEorg@txstate.edu",
     instagram: "https://instagram.com/txst.ieee/",
     linkedin: "https://linkedin.com/company/ieee-txst",
-    discord: "https://discord.gg/UZhDvyDHTc", // Discord invite link that never expires
+    discord: "https://discord.gg/Nw7cj2q5F", // Discord invite link that never expires
     groupme: "https://groupme.com/join_group/57175086/Z4pE3PCA",
   },
 
