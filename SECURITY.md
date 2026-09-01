@@ -19,7 +19,7 @@ Security updates are applied only to the live website and the `main` branch.
 If you discover a security issue or vulnerability, please report it responsibly.
 
 ### How to Report
-- Email: **texasstateieee@gmail.com**
+- Email: **IEEEorg@txstate.edu**
 - Subject line: **Security Vulnerability – IEEE TXST Website**
 
 Please include:
