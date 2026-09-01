@@ -5,7 +5,7 @@ import EventCard3D from "@/components/events/EventCard3D";
 import Section from "@/components/ui/Section";
 import FadeIn from "@/components/animations/FadeIn";
 import { events } from "@/content/data/events";
-import GoogleCalendarEmbed from "@/components/ui/GoogleCalendarEmbed";
+import OutlookCalendarEmbed from "@/components/ui/OutlookCalendarEmbed";
 
 export default function EventsClient() {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
@@ -91,14 +91,13 @@ export default function EventsClient() {
         </Section>
       )}
 
-      {/* Embed IEEE TXST Gmail Google Calendar */}
+      {/* Embed IEEE TXST Outlook Calendar */}
       <Section>
         <FadeIn>
           <h2 className="text-center text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Google Calendar
+            Calendar
           </h2>
-          <GoogleCalendarEmbed>
-          </GoogleCalendarEmbed>
+          <OutlookCalendarEmbed />
         </FadeIn>
       </Section>
 
