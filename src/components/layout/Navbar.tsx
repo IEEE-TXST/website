@@ -24,7 +24,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { siteConfig } from "@/content/config";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 type NavChild = { label: string; href: string };
 type NavItem = { label: string; href: string; children?: NavChild[] };
@@ -33,6 +33,7 @@ export default function Navbar() {
   const pathname = usePathname();
   const { scrollY } = useScroll();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [prevPathname, setPrevPathname] = useState(pathname);
 
   // Change navbar background opacity based on scroll position
   const navbarBg = useTransform(
@@ -42,9 +43,10 @@ export default function Navbar() {
   );
 
   // Close the mobile menu whenever route changes
-  useEffect(() => {
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname);
     setMobileOpen(false);
-  }, [pathname]);
+  }
 
   return (
     <motion.nav
