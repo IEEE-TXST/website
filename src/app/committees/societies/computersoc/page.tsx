@@ -82,6 +82,7 @@ export default function ComputerSoc() {
                     // bio={officer.bio}
                     email={officer.email}
                     linkedin={officer.linkedin}
+                    github={officer.github}
                   />
                 </FadeIn>
               </div>
