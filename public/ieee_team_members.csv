@@ -1,0 +1,13 @@
+group,id,name,position,major,graduationYear,image,email,linkedin,github
+executive,executive-001,Franceli Gonzalez,President,Electrical Engineering (Computer Engineering),2027,/images/team/mainbranch/franceli-gonzalez.jpg,,https://www.linkedin.com/in/franceli-gonzalez/,https://github.com/Tahira-2
+executive,executive-005,Andrea Quan,Treasurer,Electrical Engineering (Computer Engineering),2026,/images/team/mainbranch/andrea-quan.png,,https://www.linkedin.com/in/andreatquan/,https://github.com/Tahira-2
+officer,officer-001,David Baltazar,Events & Social Media,Electrical Engineering (Computer Engineering),2028,/images/team/mainbranch/david-baltazar.jpg,,https://www.linkedin.com/in/david-baltazar-37b89b328/,https://github.com/Tahira-2
+officer,officer-016,Clay Zetune,OPS Tech Lead,Electrical Engineering (Computer Engineering),2028,/images/team/mainbranch/clay-zetune.jpg,,https://www.linkedin.com/in/clay-zetune/,https://github.com/Tahira-2
+officer,officer-017, Tahira Juhair Boshra, Website Developer, Electrical Engineering (Computer Engineering),2029,/images/team/mainbranch/tahira-juhair-boshra.png,spd67@txstate.edu,https://www.linkedin.com/in/tahira-juhair-boshra-7b3479380/,https://github.com/Tahira-2
+ras,ras-001,Nathan Charles,President,Electrical Engineering (Computer Engineering),2026,/images/team/ras/nathan-charles.jpg,,https://www.linkedin.com/in/nathan--charles/,https://github.com/Tahira-2
+ras,ras-011,Alvin Esparza,Community Outreach,Electrical Engineering,2027,/images/branding/txst-bobcat-logo.png,,,
+hkn,hkn-001,Cameron Tobias,President,Electrical Engineering (Micro and Nano),2027,/images/team/hkn/cameron-tobias.jpg,,https://www.linkedin.com/in/cameron-tobias-05b57133a/,https://github.com/Tahira-2
+hkn,hkn-004,Ashok Paudel,Recording Secretary,Electrical Engineering (Computer Engineering),2027,/images/team/mainbranch/ashok-paudel.jpg,,https://www.linkedin.com/in/ashokpaudelapril/,https://github.com/Tahira-2
+hkn,hkn-005,Jessica Saddington,Corresponding Secretary,Electrical Engineering,2027,/images/team/hkn/jessica-saddington.jpg,,https://www.linkedin.com/in/jessica-saddington/,https://github.com/Tahira-2
+computerSoc,computerSoc-001,Oziel Martinez,President & PCB Co-Director,Electrical Engineering (Computer Engineering),2028,/images/team/mainbranch/oziel-martinez.jpg,,https://www.linkedin.com/in/oziel-martinez-3893022a2/,https://github.com/Tahira-2
+computerSoc,computerSoc-006,Steven Setten,Cybersecurity Director,Computer Science,2028,/images/team/mainbranch/steven-setten.jpg,,https://www.linkedin.com/in/stevenvansetten/,https://github.com/Tahira-2
