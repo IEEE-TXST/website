@@ -7,9 +7,12 @@ import ImageSlideshow from "@/components/ui/ImageSlideshow";
 import SocialLinks from "@/components/robotics/SocialLinks";
 import { getPresentTeam } from "@/lib/officers";
 import { getPhotos } from "@/lib/photos";
+<<<<<<< HEAD
 
 import ConnectQR from "@/components/connect/ConnectQR";
 import { siteConfig } from "@/content/config";
+=======
+>>>>>>> origin/main
 
 export default function Robotics() {
   const { executiveBoard, officers } = getPresentTeam("robotics-automation-society");

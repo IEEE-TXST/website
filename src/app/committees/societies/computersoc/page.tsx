@@ -4,9 +4,12 @@ import FadeIn from "@/components/animations/FadeIn";
 // import ImageCarousel from "@/components/ui/ImageCarousel";
 import SocialLinks from "@/components/computersoc/SocialLinks";
 import { getPresentTeam } from "@/lib/officers";
+<<<<<<< HEAD
 
 import ConnectQR from "@/components/connect/ConnectQR";
 import { siteConfig } from "@/content/config";
+=======
+>>>>>>> origin/main
 
 export default function ComputerSoc() {
   const { executiveBoard, officers } = getPresentTeam("computer-society");
