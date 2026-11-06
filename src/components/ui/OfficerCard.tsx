@@ -11,7 +11,7 @@
  *     name="John Doe"
  *     position="President"
  *     major="Electrical Engineering"
- *     image="/images/team/john-doe.jpg"
+ *     image="/media/officers/present/student-branch/john-doe.jpg"
  *     bio="Passionate about embedded systems..."
  *   />
  *

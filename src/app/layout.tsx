@@ -37,11 +37,11 @@ export const metadata: Metadata = {
   authors: [{ name: "IEEE TXST" }],
 
   icons: {
-    icon: "/apple-touch-icon.png",
-    apple: "/apple-touch-icon.png",
+    icon: "/icons/apple-touch-icon.png",
+    apple: "/icons/apple-touch-icon.png",
   },
 
-  manifest: "/site.webmanifest",
+  manifest: "/icons/site.webmanifest",
 
   openGraph: {
     title: "IEEE Texas State University",

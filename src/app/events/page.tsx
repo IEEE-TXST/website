@@ -2,7 +2,8 @@
  * EVENTS PAGE
  *
  * Displays all IEEE TXST events with 3D animated cards.
- * Events are pulled from /src/content/data/events.ts
+ * Events come from the /events folder (info CSV + pictures),
+ * loaded by /src/lib/events.ts
  *
  * Features:
  * - 3D tilt effect on event cards
@@ -10,11 +11,12 @@
  * - Upcoming and past events sections
  *
  * TO ADD A NEW EVENT:
- * Go to /src/content/data/events.ts and follow the instructions
+ * See PRESIDENT_GUIDE.md
  */
 
 import { Metadata } from "next";
 import EventsClient from "./EventsClient";
+import { getEvents } from "@/lib/events";
 
 export const metadata: Metadata = {
   title: "Events",
@@ -22,5 +24,6 @@ export const metadata: Metadata = {
 };
 
 export default function EventsPage() {
-  return <EventsClient />;
+  const { terms, events } = getEvents();
+  return <EventsClient terms={terms} events={events} />;
 }

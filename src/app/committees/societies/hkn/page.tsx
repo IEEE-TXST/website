@@ -3,11 +3,13 @@ import Section from "@/components/ui/Section";
 import FadeIn from "@/components/animations/FadeIn";
 import ImageCarouselReverse from "@/components/ui/ImageCarouselReverse";
 import Button from "@/components/ui/Button";
-import { carouselImages } from "@/content/data/sliders";
+import { getPhotos } from "@/lib/photos";
 import SocialLinks from "@/components/hkn/SocialLinks";
-import { hknOfficers } from "@/content/data/team";
+import { getPresentTeam } from "@/lib/officers";
 
 export default function HKN() {
+  const { executiveBoard, officers } = getPresentTeam("hkn");
+  const hknOfficers = [...executiveBoard, ...officers];
 
   return (
     <main className="min-h-screen pt-20">
@@ -27,7 +29,7 @@ export default function HKN() {
 
       <FadeIn>
         <div className="flex flex-col gap-6 shadow-2xl">
-          <ImageCarouselReverse images={carouselImages.hkn} />
+          <ImageCarouselReverse images={getPhotos("hkn")} />
         </div>
       </FadeIn>
 

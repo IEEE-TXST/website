@@ -14,8 +14,8 @@ export const homeContent = {
       "IEEE TXST is a community of students interested in technology, engineering, and learning together.",
     primaryButtonText: "Learn About Membership",
     secondaryButtonText: "View Events",
-    // Image path: /public/images/gallery/hero-image.jpg
-    heroImage: "/images/gallery/ieee-firstmeeting-group-photo.jpg",
+    // Image path: /public/images/site/hero-image.jpg
+    heroImage: "/images/site/ieee-firstmeeting-group-photo.jpg",
   },
 
   // What We Do Section
