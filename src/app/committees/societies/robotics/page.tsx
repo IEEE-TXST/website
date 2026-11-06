@@ -5,10 +5,12 @@ import ImageCarouselReverse from "@/components/ui/ImageCarouselReverse";
 import SlideIn from "@/components/animations/SlideIn";
 import ImageSlideshow from "@/components/ui/ImageSlideshow";
 import SocialLinks from "@/components/robotics/SocialLinks";
-import { rasOfficers } from "@/content/data/team";
-import { carouselImages, sliderImages } from "@/content/data/sliders";
+import { getPresentTeam } from "@/lib/officers";
+import { getPhotos } from "@/lib/photos";
 
 export default function Robotics() {
+  const { executiveBoard, officers } = getPresentTeam("robotics-automation-society");
+  const rasOfficers = [...executiveBoard, ...officers];
 
   return (
     <main className="min-h-screen pt-20">
@@ -28,7 +30,7 @@ export default function Robotics() {
 
       <FadeIn>
         <div className="flex flex-col gap-6 shadow-2xl">
-          <ImageCarouselReverse images={carouselImages.robotics} />
+          <ImageCarouselReverse images={getPhotos("ras")} />
         </div>
       </FadeIn>
 
@@ -116,7 +118,7 @@ export default function Robotics() {
           {/* Image */}
           <SlideIn direction="left">
             <div className="relative rounded-2xl overflow-hidden shadow-xl">
-              <ImageSlideshow images={sliderImages.roboticsPage} />
+              <ImageSlideshow images={getPhotos("ras", 9)} />
             </div>
           </SlideIn>
 

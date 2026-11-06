@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# generated copy of officers/events pictures (see scripts/sync-media.mjs)
+/public/media

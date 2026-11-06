@@ -1,295 +1,137 @@
 # IEEE TXST Website - President's Guide
 
-Welcome! This guide will help you manage the IEEE TXST website without needing coding knowledge.
+How to update the website without coding. Everything is a spreadsheet (CSV) or a picture in a folder.
+After any change: **commit and push** to GitHub and the site updates itself.
 
-## 📋 Table of Contents
+## What lives where
 
-1. [Adding/Updating Officers](#adding-officers)
-2. [Adding Event Photos](#adding-event-photos)
-3. [Adding New Events](#adding-new-events)
-4. [Updating Contact Information](#updating-contact-info)
-5. [Common Issues & Solutions](#troubleshooting)
+| I want to change... | Go to |
+|---|---|
+| Officers | `officers/present/` |
+| Events | `events/present/` |
+| Contact info, meeting time, links, present term name | `src/content/config.ts` |
+| Homepage text | `src/content/pages/home.ts` |
+| Homepage and society photo sliders | `events/present/pictures/photos/` (see "Event photos") |
+| Logos | `public/images/branding/` |
 
----
+## Folder layout (officers and events are the same idea)
 
-## 👥 Adding/Updating Officers {#adding-officers}
-
-### Step 1: Prepare the Officer Photo
-
-1. **Take or get a professional photo** of the officer
-
-   - Square format works best (crop to 1:1 ratio)
-   - Good lighting, plain background preferred
-   - File size: Keep under 2MB
-
-2. **Name the file properly**
-
-   - Format: `firstname-lastname.jpg`
-   - Example: `john-doe.jpg`
-   - Use lowercase, hyphens between words
-   - Supported formats: `.jpg`, `.jpeg`, `.png`
-
-3. **Upload the photo**
-   - Navigate to: `/public/images/team/<committe>/`
-   - Drag and drop your photo into this folder
-
-### Step 2: Add Officer Information
-
-1. **Open the team file**
-
-   - Go to: `/public/ieee_team_members.csv`
-
-2. **Add/Edit a Row**  Columns are:
-      group    id    name    position    major    graduationYear    image    email    linkedin    github
-
-   "group" controls which exported array the row lands in. Valid values:
- -      executive   -> executiveBoard
- -      officer     -> officerMembers
- -      ras         -> rasOfficers
- -      hkn         -> hknOfficers
- -      computerSoc -> computerSocOfficers
-
-3. **Save the file** Save the CSV back to `/public/ieee_team_members.csv`
-
-### Removing an Officer
-- Remove the officer's row from `/public/ieee_team_members.csv`
-
-
-## 📸 Adding Event Photos {#adding-event-photos}
-
-### For the Photo Gallery (Coming Soon)
-
-1. **Prepare photos**
-
-   - Compress large images (use tinypng.com or similar)
-   - Keep under 2MB each
-   - Good quality, well-lit
-
-2. **Name the files descriptively**
-
-   - Format: `event-name-YYYY-MM-DD.jpg`
-   - Example: `arduino-workshop-2026-02-15.jpg`
-
-3. **Upload photos**
-
-   - Go to: `/public/images/gallery/`
-   - Drag and drop photos into this folder
-
-4. **Photos will automatically appear** in the gallery (once implemented)
-
----
-
-## 📅 Adding New Events {#adding-new-events}
-
-### Step 1: Prepare Event Image
-
-1. Create or get an event flyer/photo
-2. Name it: `<EventName>-<IEEECategory>-<Type>-<SemesterYear>.<ext>`
-3. Upload to: `/public/images/events/`
-
-### Step 2: Add Event to List
-
-1. **Open the events file**
-
-   - Go to: `/src/content/data/events.ts`
-
-2. **Copy the template** (found at the bottom)
-
-3. **Paste it at the TOP** of the `events` array (right after `[`)
-
-4. **Fill in the details**
-
-   ```typescript
-   {
-     id: "event-005",
-     title: "Python Workshop",
-     description: "Learn Python basics and build your first project!",
-     date: "2026-03-15",        // Format: YYYY-MM-DD
-     time: "6:00 PM",
-     location: "Engineering Building, Room 201",
-     category: "workshop",      // Options: workshop, meeting, social, competition, speaker
-     image: "/images/events/python-workshop-2026-03-15.jpg",
-     registrationLink: "https://forms.gle/your-link",  // Optional
-     isPast: false,
-   },
-   ```
-
-5. **Category Options:**
-
-   - `"workshop"` - Technical workshops (purple badge)
-   - `"meeting"` - General meetings (blue badge)
-   - `"social"` - Social events (green badge)
-   - `"competition"` - Competitions, hackathons (red badge)
-   - `"speaker"` - Guest speaker events (orange badge)
-
-6. **Save the file**
-
-### Marking Events as Past
-
-When an event is over, change:
-
-```typescript
-isPast: false,    // Change this
+```
+officers/                                      events/
+  present/                                       present/
+    info/      <society>.csv                       info/      events.csv
+    pictures/  <society>/jane-doe.jpg              pictures/  date-title.png (flyers)
+    pictures/  group-photo.jpg  (optional)         pictures/  photos/  (slider photos, see below)
+  past/2025-26/   (same inside)                  past/2025-26/   (same inside)
+  unassigned/     (parked, NOT on the website)   unassigned/     (parked, NOT on the website)
 ```
 
-to:
+- Societies: `student-branch`, `hkn`, `computer-society`, `robotics-automation-society`.
+- The present term's name (e.g. `2026-27`) is `currentTerm` in `src/content/config.ts`.
+- You can open the CSV files in Excel, Google Sheets or Numbers. Keep the header row.
 
-```typescript
-isPast: true,     // To this
+## Officers
+
+**Add or change someone**
+1. Open `officers/present/info/<society>.csv` and add a row. Columns:
+   `group,name,position,major,graduationYear,email,linkedin,github,image`
+   - `group`: `executive` for the Executive Board, blank for everyone else
+   - leave `image` blank (only fill it if the photo file is named differently from the person)
+   - LinkedIn must start with `https://linkedin.com/`, GitHub with `https://github.com/`
+2. Save their photo as `officers/present/pictures/<society>/firstname-lastname.jpg`.
+   The name must match the CSV ("Jane Doe" -> `jane-doe.jpg`). `.jpg .jpeg .png .webp` all work.
+   Use a square photo under 500 KB. No photo? A default logo is shown.
+   Someone in two societies needs only one photo: if it isn't in a society's folder, the site uses their
+   photo from another society's folder in the same term.
+
+**Remove someone:** delete their row (and photo).
+
+**What visitors see:** the Officers page opens on Student Branch, with tabs for HKN, Computer Society and
+Robotics & Automation Society, plus a Term dropdown once there is a past term with data.
+
+## Events
+
+1. Add a row to `events/present/info/events.csv`. Columns:
+   `title,description,date,time,location,category,image,registrationLink`
+   - `date`: `YYYY-MM-DD`, `time`: `6:00 PM`
+   - `category`: `workshop`, `meeting`, `social`, `speaker` or `tour`
+   - `image`: **leave blank** (see below); `registrationLink`: optional, starts with `https://`
+2. Save the flyer in `events/present/pictures/` named **`date-title.png`**, written the same way as the row:
+   - row: `Google Speaker Series`, date `2026-04-21`
+   - file: `2026-04-21-google-speaker-series.png`
+   - lowercase, words joined with hyphens, `.png .jpg .jpeg .webp` all work
+
+The site links the flyer to the event by that name. If an event shows the default logo, the file name
+doesn't match: the build log says `no picture for "Title" (expected 2026-04-21-title.png)`, and it also
+lists any flyer that no event uses. Only fill the `image` column for an exception, such as a file with a
+different name or one picture shared by two events.
+
+Upcoming vs past is automatic from the date, and past events are grouped by term on the website.
+
+## Every year: new batch of officers and events
+
+1. Create `officers/past/<year>/` and `events/past/<year>/`, where `<year>` is the year of `currentTerm` in `src/content/config.ts`
+   (for example `2026-27`).
+2. Move everything inside `officers/present/` into `officers/past/<year>/`, and the same for events.
+   (`info/`, `pictures/` and `group-photo.jpg` all move together.)
+3. Recreate `present/info` and `present/pictures` (copy a CSV from the old term for its header row),
+   then add the new officers, events and pictures.
+4. In `src/content/config.ts`, change `currentTerm` to the new year, for example `"2027-28"`.
+5. Commit and push. Old terms show in the Term dropdowns. To remove an old term from the website,
+   delete its folder. A past term with no data stays hidden.
+
+`unassigned/` is a parking spot for anything you haven't sorted yet. The website ignores it.
+
+## Site info (code files, but only text changes)
+
+Keep the quotes `"` and commas `,` exactly as they are.
+- **`src/content/config.ts`**: organization name and tagline, contact details for the main branch
+  (`mainIEEEContact`) and each society (`RASContact`, `HKNContact`, `computerSocContact`),
+  meeting schedule (`meetings`), navigation and the join link (`cta`).
+- **`src/content/pages/home.ts`**: homepage text.
+
+## Event photos (sliders)
+
+The homepage slider and the Robotics and HKN carousels fill themselves from photos in the events folder.
+No code to edit. Drop photos into the term they were taken in:
+
+```
+events/present/pictures/
+  2026-04-21-google-speaker-series.png   <- flyers, named date-title
+  photos/                            <- general photos: homepage slider
+  photos/ras/                        <- Robotics & Automation Society page
+  photos/hkn/                        <- HKN page
+  photos/computer-society/           <- Computer Society page
 ```
 
----
+Newest term shows first, and when you archive a term its photos move with it. Photos are described
+on the site by their file name, so name them clearly (`ras-sumobot-competition-photo.png`). A photo named `date-title` like a flyer
+also works as that event's picture (the Dell and Tesla tour photos do both jobs).
+The homepage slider shows the 12 newest general photos. Photos you haven't sorted yet can wait in
+`events/unassigned/photos/`.
 
-## ⚙️ Updating Contact Information {#updating-contact-info}
+## Other pictures
 
-### Step 1: Open Config File
+- Officer and event pictures go in the `officers/` and `events/` folders above, not in `public/images/`.
+- `public/images/branding/` is for logos and `public/images/site/` for the homepage hero photo
+  (the file is set in `src/content/pages/home.ts`).
+- Compress big images first (tinypng.com or squoosh.app). Aim for under 500 KB.
 
-- Go to: `/src/content/config.ts`
+## Troubleshooting
 
-### Step 2: Update Information
+- **A person shows the default logo:** the photo name must match the CSV name exactly (`jane-doe.jpg`).
+  The build log also prints `no photo for "Name" (expected name.jpg)`.
+- **A row is missing:** check that the date is `YYYY-MM-DD`, the category is one of the five above,
+  and links start with `https://`. Invalid rows are skipped, and the build log says why.
+- **Change not showing:** make sure you saved, committed and pushed, then wait a minute for the deploy
+  and hard-refresh (Ctrl+Shift+R / Cmd+Shift+R).
+- **Website shows an error after editing a code file:** you probably deleted a quote or comma. Undo
+  (Ctrl+Z / Cmd+Z), or ask the web team lead.
 
-**Email Address:**
+## Quick checklists
 
-```typescript
-contact: {
-  email: "ieee@txst.edu",  // Change this
-  ...
-},
-```
+- **New officer:** photo in `officers/present/pictures/<society>/` -> row in `officers/present/info/<society>.csv` -> push
+- **New event:** row in `events/present/info/events.csv` -> flyer in `events/present/pictures/` named `date-title.png` -> push
+- **New year:** archive both `present/` folders into `past/<year>/` -> update `currentTerm` in `src/content/config.ts` -> add the new batch -> push
 
-**Social Media Links:**
-
-```typescript
-contact: {
-  instagram: "https://instagram.com/ieee_txst",
-  discord: "https://discord.gg/your-invite",
-  linkedin: "https://linkedin.com/company/ieee-txst",
-},
-```
-
-**Meeting Information:**
-
-```typescript
-meetings: {
-  schedule: "Every Thursday at 6:00 PM",
-  location: "Engineering Building, Room 101",
-  virtualLink: "https://zoom.us/j/your-meeting-id",
-},
-```
-
-**Membership Form Link:**
-
-```typescript
-cta: {
-  membershipFormUrl: "https://forms.gle/your-form-link",
-},
-```
-
-### Step 3: Save the File
-
----
-
-## 🔧 Common Issues & Troubleshooting {#troubleshooting}
-
-### Issue: Photo Doesn't Show Up
-
-**Solution:**
-
-1. Check the file path is correct: `/images/team/firstname-lastname.jpg`
-2. Make sure the file exists in `/public/images/team/`
-3. Check file name matches exactly (case-sensitive!)
-4. Try refreshing the page with Ctrl+Shift+R (hard refresh)
-
-### Issue: Website Shows an Error After Editing
-
-**Solution:**
-
-1. Check for missing commas between items
-2. Make sure all quotes are closed: `"text"` not `"text`
-3. Check brackets are balanced: every `{` has a matching `}`
-4. If stuck, press Ctrl+Z (undo) until it works again
-
-### Issue: Changes Don't Appear
-
-**Solution:**
-
-1. Make sure you saved the file (Ctrl+S)
-2. Wait 5-10 seconds for the website to rebuild
-3. Refresh the page (F5 or Ctrl+R)
-4. Try hard refresh (Ctrl+Shift+R)
-
-### Issue: Image is Too Large/Slow to Load
-
-**Solution:**
-
-1. Compress the image using:
-   - TinyPNG.com (easiest)
-   - Squoosh.app (more options)
-2. Aim for under 500KB for photos
-3. Re-upload the compressed version
-
----
-
-## 📝 Quick Checklists
-
-### ✅ Adding a New Officer
-
-- [ ] Take/get professional photo
-- [ ] Crop to square (1:1 ratio)
-- [ ] Name file: `firstname-lastname.jpg`
-- [ ] Upload to `/public/images/team/`
-- [ ] Open `/src/content/data/team.ts`
-- [ ] Copy template
-- [ ] Fill in all information
-- [ ] Check comma after closing `}`
-- [ ] Save file
-- [ ] Refresh website to verify
-
-### ✅ Adding a New Event
-
-- [ ] Create/get event image
-- [ ] Name: `event-name-YYYY-MM-DD.jpg`
-- [ ] Upload to `/public/images/events/`
-- [ ] Open `/src/content/data/events.ts`
-- [ ] Copy template
-- [ ] Paste at TOP of events array
-- [ ] Fill in all details
-- [ ] Pick correct category
-- [ ] Save file
-- [ ] Refresh website to verify
-
----
-
-## 🆘 Need Help?
-
-**Can't figure something out?**
-
-1. Check this guide again carefully
-2. Look for similar examples in the code
-3. Try undoing your changes (Ctrl+Z)
-4. Contact your web administrator
-5. Check `/src/content/README.md` for more details
-
-**Emergency Contact:**
-
-- Web Administrator: [Add contact info here]
-- GitHub Issues: [Add repo link]
-
----
-
-## 💡 Pro Tips
-
-1. **Always save your work** - Ctrl+S is your friend
-2. **Make one change at a time** - Easier to fix if something breaks
-3. **Keep backups** - Copy the file before making big changes
-4. **Test after changes** - Always check the website after editing
-5. **Compress images** - Keeps the website fast
-6. **Use descriptive names** - Makes finding files easier later
-7. **Ask for help early** - Don't struggle alone!
-
----
-
-**Last Updated:** January 2026
-**Maintained by:** IEEE TXST Web Team
-
-Good luck! You've got this! 🚀
+Maintained by the IEEE TXST web team.

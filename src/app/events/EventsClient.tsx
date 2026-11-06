@@ -1,14 +1,37 @@
-"use client";
+"use client"; // needs state (selected category / term), so it runs in the browser
 
-import { useState } from "react";
+/**
+ * EVENTS CLIENT
+ *
+ * The interactive part of the Events page: category filter buttons, a Term dropdown,
+ * the Upcoming list, the Calendar, and Past Events grouped by term.
+ * Events are loaded on the server (src/lib/events.ts) and passed in as props.
+ */
+import { useState, useSyncExternalStore } from "react";
 import EventCard3D from "@/components/events/EventCard3D";
 import Section from "@/components/ui/Section";
 import FadeIn from "@/components/animations/FadeIn";
-import { events } from "@/content/data/events";
-import GoogleCalendarEmbed from "@/components/ui/GoogleCalendarEmbed";
+import type { Event, EventTerm } from "@/content/data/events";
+import OutlookCalendarEmbed from "@/components/ui/OutlookCalendarEmbed";
 
-export default function EventsClient() {
+export default function EventsClient({
+  events,
+  terms,
+}: {
+  events: Event[];
+  terms: EventTerm[];
+}) {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  const [selectedTerm, setSelectedTerm] = useState<string>("all"); // "all" or a term id such as "present" / "2024-25"
+
+  // The page is built ahead of time, so an event's upcoming/past flag can be out of date by the time
+  // someone visits. useSyncExternalStore gives `null` while the server builds the page and the visitor's
+  // real date in the browser, which avoids a server/browser mismatch and keeps the flag fresh.
+  const today = useSyncExternalStore(
+    () => () => {},
+    () => new Date().toLocaleDateString("en-CA"),
+    () => null
+  );
 
   // Categories for filtering
   const categories = [
@@ -21,14 +44,19 @@ export default function EventsClient() {
   ];
 
   // Filter events
-  const filteredEvents = events.filter((event) => {
-    if (selectedCategory === "all") return true;
-    return event.category === selectedCategory;
-  });
+  const filteredEvents = events
+    .map((event) => (today ? { ...event, isPast: event.date < today } : event))
+    .filter((event) => selectedTerm === "all" || event.termId === selectedTerm)
+    .filter((event) => selectedCategory === "all" || event.category === selectedCategory);
 
   // Separate upcoming and past events
   const upcomingEvents = filteredEvents.filter((event) => !event.isPast);
   const pastEvents = filteredEvents.filter((event) => event.isPast);
+
+  // Past events grouped by term (terms arrive newest-first: present, then past terms)
+  const pastByTerm = terms
+    .map((term) => ({ term, items: pastEvents.filter((e) => e.termId === term.id) }))
+    .filter((group) => group.items.length > 0);
 
   return (
     <main className="min-h-screen pt-20">
@@ -70,6 +98,23 @@ export default function EventsClient() {
               </button>
             ))}
           </div>
+          {terms.length > 1 && (
+            <label className="mt-6 flex items-center justify-center gap-2 text-gray-700">
+              <span className="font-medium">Term:</span>
+              <select
+                value={selectedTerm}
+                onChange={(e) => setSelectedTerm(e.target.value)}
+                className="rounded-lg border border-gray-300 bg-white px-3 py-2"
+              >
+                <option value="all">All terms</option>
+                {terms.map((t) => (
+                  <option key={t.id} value={t.id}>
+                    {t.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+          )}
         </FadeIn>
       </Section>
 
@@ -91,14 +136,13 @@ export default function EventsClient() {
         </Section>
       )}
 
-      {/* Embed IEEE TXST Gmail Google Calendar */}
+      {/* Embed IEEE TXST Outlook Calendar */}
       <Section>
         <FadeIn>
           <h2 className="text-center text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Google Calendar
+            Calendar
           </h2>
-          <GoogleCalendarEmbed>
-          </GoogleCalendarEmbed>
+          <OutlookCalendarEmbed />
         </FadeIn>
       </Section>
 
@@ -145,15 +189,27 @@ export default function EventsClient() {
             </div>
           </FadeIn>
 
-          <div className="grid grid-cols-1 min-[520px]:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-            {pastEvents.map((event, index) => (
-              <div
-                key={event.id}
-                className="w-full max-w-[240px] mx-auto sm:max-w-none"
-              >
-                <FadeIn delay={index * 0.1}>
-                  <EventCard3D event={event} />
-                </FadeIn>
+          <div className="space-y-12">
+            {pastByTerm.map(({ term, items }) => (
+              <div key={term.id}>
+                <h3 className="text-2xl md:text-3xl font-semibold text-gray-900 mb-6 text-center">
+                  {term.label}{" "}
+                  <span className="text-base font-normal text-gray-500">
+                    · {items.length} {items.length === 1 ? "event" : "events"}
+                  </span>
+                </h3>
+                <div className="grid grid-cols-1 min-[520px]:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+                  {items.map((event, index) => (
+                    <div
+                      key={event.id}
+                      className="w-full max-w-[240px] mx-auto sm:max-w-none"
+                    >
+                      <FadeIn delay={Math.min(index, 8) * 0.1}>
+                        <EventCard3D event={event} />
+                      </FadeIn>
+                    </div>
+                  ))}
+                </div>
               </div>
             ))}
           </div>

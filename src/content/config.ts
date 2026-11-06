@@ -11,6 +11,10 @@ export const siteConfig = {
   organizationShortName: "IEEE TXST",
   tagline: "Advancing technology for humanity",
 
+  // Name of the CURRENT term, shown as "2026–27 (Present)" on the Officers and Events pages.
+  // Change this once a year when you archive the old term (see PRESIDENT_GUIDE.md). Format: YYYY-YY.
+  currentTerm: "2026-27",
+
   // Main IEEE Student Branch Contact Information
   mainIEEEContact: {
     email: "IEEEorg@txstate.edu",

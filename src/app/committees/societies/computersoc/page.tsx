@@ -2,11 +2,12 @@ import OfficerCard from "@/components/ui/OfficerCard";
 import Section from "@/components/ui/Section";
 import FadeIn from "@/components/animations/FadeIn";
 // import ImageCarousel from "@/components/ui/ImageCarousel";
-// import { committeeSliderImages } from "@/content/data/sliders";
 import SocialLinks from "@/components/computersoc/SocialLinks";
-import { computerSocOfficers } from "@/content/data/team";
+import { getPresentTeam } from "@/lib/officers";
 
 export default function ComputerSoc() {
+  const { executiveBoard, officers } = getPresentTeam("computer-society");
+  const computerSocOfficers = [...executiveBoard, ...officers];
 
   return (
     <main className="min-h-screen pt-20">
@@ -28,7 +29,6 @@ export default function ComputerSoc() {
 
       <FadeIn>
         <div className="flex flex-col gap-6 shadow-2xl">
-          <ImageCarousel images={committeeSliderImages.computerSoc} />
         </div>
       </FadeIn>
 
