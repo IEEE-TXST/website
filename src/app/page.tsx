@@ -22,6 +22,7 @@ import ImageSlideshow from "@/components/ui/ImageSlideshow";
 import { homeContent } from "@/content/pages/home";
 import { siteConfig } from "@/content/config";
 import { getPhotos } from "@/lib/photos";
+import ConnectQR from "@/components/connect/ConnectQR";
 
 export default function Home() {
   // What we offer (simple, educational focus)
@@ -86,6 +87,9 @@ export default function Home() {
 
       {/* Main IEEE Branch Social Links Section */}
       <SocialLinks />
+
+      {/* QR codes for the IEEE Student Branch: Discord, LinkedIn, GroupMe, Instagram, Bobcat Org Hub */}
+      <ConnectQR contact={siteConfig.mainIEEEContact} subtitle="Point your phone camera at a code to join the IEEE Student Branch community." />
 
       {/* What We Offer */}
       <Section className="bg-gray-50">

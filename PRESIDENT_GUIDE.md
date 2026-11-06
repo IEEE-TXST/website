@@ -90,10 +90,15 @@ Keep the quotes `"` and commas `,` exactly as they are.
   meeting schedule (`meetings`), navigation and the join link (`cta`).
 - **`src/content/pages/home.ts`**: homepage text.
 
-**Changing a social link (Discord, LinkedIn, GroupMe):** edit it in `src/content/config.ts` under
-`mainIEEEContact`. The buttons and the "Scan to Connect" QR codes on the Membership page update by themselves.
-For print-ready QR files (posters, flyers, slides), run `npm run qr`; the files appear in
-`public/images/qr/` as `discord`, `linkedin` and `groupme` in `.svg` (sharp at any size) and `.png`.
+**Changing a social link (Discord, LinkedIn, GroupMe, Instagram, Bobcat Org Hub):** edit it in
+`src/content/config.ts` in that society's block: `mainIEEEContact` (IEEE Student Branch), `RASContact`,
+`HKNContact` or `computerSocContact`. The buttons and the "Scan to Connect" QR codes update by themselves:
+the homepage shows the Student Branch's codes, and each society page shows its own. A QR code appears only
+for links that are filled in. To hide one, delete its line (or put `//` in front of it).
+
+For print-ready QR files (posters, flyers, slides), run `npm run qr`. The files appear in
+`public/images/qr/` named `<society>-<channel>`, for example `student-branch-discord.png`,
+`student-branch-org-hub.svg`, `ras-instagram.png` (`.svg` is sharp at any size, `.png` is 1024 px).
 Check Discord invites are set to **never expire**, or the code stops working.
 
 ## Event photos (sliders)

@@ -8,6 +8,9 @@ import SocialLinks from "@/components/robotics/SocialLinks";
 import { getPresentTeam } from "@/lib/officers";
 import { getPhotos } from "@/lib/photos";
 
+import ConnectQR from "@/components/connect/ConnectQR";
+import { siteConfig } from "@/content/config";
+
 export default function Robotics() {
   const { executiveBoard, officers } = getPresentTeam("robotics-automation-society");
   const rasOfficers = [...executiveBoard, ...officers];
@@ -184,6 +187,9 @@ export default function Robotics() {
 
       {/* RAS Branch Social Links Section */}
       <SocialLinks />
+
+      {/* QR codes for RAS (only the links that exist in config.ts) */}
+      <ConnectQR contact={siteConfig.RASContact} subtitle="Point your phone camera at a code to follow RAS TXST." />
 
       {/* Officer Members Section */}
       {rasOfficers.length > 0 && (

@@ -11,7 +11,6 @@ import SlideIn from "@/components/animations/SlideIn";
 import Button from "@/components/ui/Button";
 import Section from "@/components/ui/Section";
 import Icon from "@/components/ui/Icon";
-import QRCodes from "@/components/membership/QRCodes";
 import { siteConfig } from "@/content/config";
 
 export const metadata: Metadata = {
@@ -240,21 +239,6 @@ export default function MembershipPage() {
             </div>
           </FadeIn>
         </div>
-      </Section>
-
-      {/* Scan to Connect: QR codes for Discord, LinkedIn and GroupMe (built from config.ts) */}
-      <Section className="bg-gray-50">
-        <FadeIn>
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Scan to Connect
-            </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Point your phone camera at a code to join our community.
-            </p>
-          </div>
-        </FadeIn>
-        <QRCodes />
       </Section>
 
       {/* Final CTA */}

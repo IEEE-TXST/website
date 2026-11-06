@@ -22,6 +22,7 @@ export const siteConfig = {
     linkedin: "https://www.linkedin.com/company/ieee-student-branch-txst/",
     discord: "https://discord.gg/wdkbKTB76", // Discord invite link (configure as non-expiring)
     groupme: "https://groupme.com/join_group/57175086/Z4pE3PCA",
+    orgHub: "https://txst.campuslabs.com/engage/organization/2498", // Bobcat Org Hub (Campus Labs Engage) page
   },
 
   // RAS Student Branch Contact Information
