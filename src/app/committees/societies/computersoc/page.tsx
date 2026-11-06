@@ -11,6 +11,9 @@ import { siteConfig } from "@/content/config";
 =======
 >>>>>>> origin/main
 
+import ConnectQR from "@/components/connect/ConnectQR";
+import { siteConfig } from "@/content/config";
+
 export default function ComputerSoc() {
   const { executiveBoard, officers } = getPresentTeam("computer-society");
   const computerSocOfficers = [...executiveBoard, ...officers];
