@@ -81,6 +81,7 @@ export default function Officers() {
                   // bio={executive.bio}
                   email={executive.email}
                   linkedin={executive.linkedin}
+                  github={executive.github}
                 />
               </FadeIn>
             </div>
@@ -115,6 +116,7 @@ export default function Officers() {
                     // bio={officer.bio}
                     email={officer.email}
                     linkedin={officer.linkedin}
+                    github={officer.github}
                   />
                 </FadeIn>
               </div>

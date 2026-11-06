@@ -108,6 +108,7 @@ export default function HKN() {
                     // bio={officer.bio}
                     email={officer.email}
                     linkedin={officer.linkedin}
+                    github={officer.github}
                   />
                 </FadeIn>
               </div>

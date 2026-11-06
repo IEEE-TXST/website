@@ -30,96 +30,30 @@ Welcome! This guide will help you manage the IEEE TXST website without needing c
    - Supported formats: `.jpg`, `.jpeg`, `.png`
 
 3. **Upload the photo**
-   - Navigate to: `/public/images/team/`
+   - Navigate to: `/public/images/team/<committe>/`
    - Drag and drop your photo into this folder
 
 ### Step 2: Add Officer Information
 
 1. **Open the team file**
 
-   - Go to: `/src/content/data/team.ts`
+   - Go to: `/public/ieee_team_members.csv`
 
-2. **Find the template** (it's at the bottom with comments)
+2. **Add/Edit a Row**  Columns are:
+      group    id    name    position    major    graduationYear    image    email    linkedin    github
 
-   ```typescript
-   // TEMPLATE - Copy this:
-   // {
-   //   id: "officer-XXX",
-   //   name: "Full Name",
-   //   position: "Position Title",
-   //   ...
-   // },
-   ```
+   "group" controls which exported array the row lands in. Valid values:
+ -      executive   -> executiveBoard
+ -      officer     -> officerMembers
+ -      ras         -> rasOfficers
+ -      hkn         -> hknOfficers
+ -      computerSoc -> computerSocOfficers
 
-3. **Copy the template** and paste it INSIDE the `executiveBoard` array
-
-4. **Fill in the information**
-
-   ```typescript
-   {
-     id: "officer-004",              // Change number (must be unique)
-     name: "Sarah Johnson",          // Officer's full name
-     position: "Treasurer",          // Their position
-     major: "Computer Science",      // Their major
-     graduationYear: "2027",         // Graduation year
-     bio: "Passionate about AI and machine learning...", // Short bio
-     image: "/images/team/sarah-johnson.jpg",  // Path to their photo
-     email: "sarah.johnson@txst.edu",  // Optional
-     linkedin: "https://linkedin.com/in/sarahjohnson", // Optional
-   },
-   ```
-
-5. **Important**: Make sure there's a comma after the closing `}`
-
-6. **Save the file** (Ctrl+S or Cmd+S)
-
-### Example: Adding a New President
-
-**Before:**
-
-```typescript
-export const executiveBoard: TeamMember[] = [
-  {
-    id: "officer-001",
-    name: "John Doe",
-    position: "President",
-    ...
-  },
-  // More officers here
-];
-```
-
-**After:**
-
-```typescript
-export const executiveBoard: TeamMember[] = [
-  {
-    id: "officer-001",
-    name: "John Doe",
-    position: "President",
-    ...
-  },
-  {
-    id: "officer-004",
-    name: "Sarah Johnson",
-    position: "Vice President",
-    major: "Computer Engineering",
-    graduationYear: "2027",
-    bio: "Excited to help IEEE TXST grow this year!",
-    image: "/images/team/sarah-johnson.jpg",
-    email: "sarah.j@txst.edu",
-  },
-  // More officers here
-];
-```
+3. **Save the file** Save the CSV back to `/public/ieee_team_members.csv`
 
 ### Removing an Officer
+- Remove the officer's row from `/public/ieee_team_members.csv`
 
-1. Find the officer's entry in `/src/content/data/team.ts`
-2. Delete the entire block from `{` to `},`
-3. Save the file
-
----
 
 ## 📸 Adding Event Photos {#adding-event-photos}
 
