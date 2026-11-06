@@ -6,6 +6,12 @@ import Button from "@/components/ui/Button";
 import { getPhotos } from "@/lib/photos";
 import SocialLinks from "@/components/hkn/SocialLinks";
 import { getPresentTeam } from "@/lib/officers";
+<<<<<<< HEAD
+
+import ConnectQR from "@/components/connect/ConnectQR";
+import { siteConfig } from "@/content/config";
+=======
+>>>>>>> origin/main
 
 export default function HKN() {
   const { executiveBoard, officers } = getPresentTeam("hkn");
@@ -82,6 +88,9 @@ export default function HKN() {
 
       {/* HKN Branch Social Links Section */}
       <SocialLinks />
+
+      {/* QR codes for HKN (only the links that exist in config.ts) */}
+      <ConnectQR contact={siteConfig.HKNContact} subtitle="Point your phone camera at a code to follow HKN TXST." />
 
       {/* Officer Members Section */}
       {hknOfficers.length > 0 && (

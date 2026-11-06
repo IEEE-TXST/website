@@ -4,6 +4,12 @@ import FadeIn from "@/components/animations/FadeIn";
 // import ImageCarousel from "@/components/ui/ImageCarousel";
 import SocialLinks from "@/components/computersoc/SocialLinks";
 import { getPresentTeam } from "@/lib/officers";
+<<<<<<< HEAD
+
+import ConnectQR from "@/components/connect/ConnectQR";
+import { siteConfig } from "@/content/config";
+=======
+>>>>>>> origin/main
 
 export default function ComputerSoc() {
   const { executiveBoard, officers } = getPresentTeam("computer-society");
@@ -54,6 +60,9 @@ export default function ComputerSoc() {
 
       {/* Computer Society Branch Social Links Section */}
       <SocialLinks />
+
+      {/* QR codes for Computer Society (only the links that exist in config.ts) */}
+      <ConnectQR contact={siteConfig.computerSocContact} subtitle="Point your phone camera at a code to follow Computer Society TXST." />
 
       {/* Officer Members Section */}
       {computerSocOfficers.length > 0 && (

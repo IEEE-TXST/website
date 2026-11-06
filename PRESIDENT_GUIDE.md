@@ -90,6 +90,20 @@ Keep the quotes `"` and commas `,` exactly as they are.
   meeting schedule (`meetings`), navigation and the join link (`cta`).
 - **`src/content/pages/home.ts`**: homepage text.
 
+<<<<<<< HEAD
+**Changing a social link (Discord, LinkedIn, GroupMe, Instagram, Bobcat Org Hub):** edit it in
+`src/content/config.ts` in that society's block: `mainIEEEContact` (IEEE Student Branch), `RASContact`,
+`HKNContact` or `computerSocContact`. The buttons and the "Scan to Connect" QR codes update by themselves:
+the homepage shows the Student Branch's codes, and each society page shows its own. A QR code appears only
+for links that are filled in. To hide one, delete its line (or put `//` in front of it).
+
+For print-ready QR files (posters, flyers, slides), run `npm run qr`. The files appear in
+`public/images/qr/` named `<society>-<channel>`, for example `student-branch-discord.png`,
+`student-branch-org-hub.svg`, `ras-instagram.png` (`.svg` is sharp at any size, `.png` is 1024 px).
+Check Discord invites are set to **never expire**, or the code stops working.
+
+=======
+>>>>>>> origin/main
 ## Event photos (sliders)
 
 The homepage slider and the Robotics and HKN carousels fill themselves from photos in the events folder.
