@@ -90,6 +90,12 @@ Keep the quotes `"` and commas `,` exactly as they are.
   meeting schedule (`meetings`), navigation and the join link (`cta`).
 - **`src/content/pages/home.ts`**: homepage text.
 
+**Changing a social link (Discord, LinkedIn, GroupMe):** edit it in `src/content/config.ts` under
+`mainIEEEContact`. The buttons and the "Scan to Connect" QR codes on the Membership page update by themselves.
+For print-ready QR files (posters, flyers, slides), run `npm run qr`; the files appear in
+`public/images/qr/` as `discord`, `linkedin` and `groupme` in `.svg` (sharp at any size) and `.png`.
+Check Discord invites are set to **never expire**, or the code stops working.
+
 ## Event photos (sliders)
 
 The homepage slider and the Robotics and HKN carousels fill themselves from photos in the events folder.
