@@ -13,6 +13,9 @@ import { siteConfig } from "@/content/config";
 =======
 >>>>>>> origin/main
 
+import ConnectQR from "@/components/connect/ConnectQR";
+import { siteConfig } from "@/content/config";
+
 export default function HKN() {
   const { executiveBoard, officers } = getPresentTeam("hkn");
   const hknOfficers = [...executiveBoard, ...officers];

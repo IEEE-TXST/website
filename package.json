@@ -8,9 +8,13 @@
     "prebuild": "node scripts/sync-media.mjs",
     "sync-media": "node scripts/sync-media.mjs",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "qr": "node --experimental-strip-types --no-warnings scripts/generate-qr.mjs",
 =======
 >>>>>>> origin/main
+=======
+    "qr": "node --experimental-strip-types --no-warnings scripts/generate-qr.mjs",
+>>>>>>> update-social-media-links
     "build": "next build --turbopack",
     "start": "next start",
     "lint": "eslint"
