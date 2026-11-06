@@ -22,14 +22,7 @@ import ImageSlideshow from "@/components/ui/ImageSlideshow";
 import { homeContent } from "@/content/pages/home";
 import { siteConfig } from "@/content/config";
 import { getPhotos } from "@/lib/photos";
-<<<<<<< HEAD
-<<<<<<< HEAD
 import ConnectQR from "@/components/connect/ConnectQR";
-=======
->>>>>>> origin/main
-=======
-import ConnectQR from "@/components/connect/ConnectQR";
->>>>>>> update-social-media-links
 
 export default function Home() {
   // What we offer (simple, educational focus)
